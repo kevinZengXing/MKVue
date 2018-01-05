@@ -7,5 +7,5 @@ exports.hostConfig = function(isDev){
         host : ${host}
         // host : ${tempHost}
     }`
-    require('fs').writeFile(require('path').join(__dirname , '../src/modules/js/host-config.js'), fileTxt)
+    require('fs').writeFile(require('path').join(__dirname , '../src/modules/js/RAP/host-config.js'), fileTxt)
 }
