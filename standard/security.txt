@@ -1,0 +1,41 @@
+# 安全相关（目前以xss为主并且只讲前端相关）
+
+## XSS（cross site scripting，即跨站脚本攻击）
+
+### 类型介绍
+
+1. 反射型xss
+    通俗来说就是你往服务器发什么，服务器就给你返回什么，危害程度较低
+2. 储存型xss
+    即通过储存到数据库中，使所有人在有请求相关请求时都会被攻击，危害程度较大
+3. dom型xss
+    即只在客户端发生的xss类型
+
+### 解决方案
+
+1. 明确业务线中，有xss风险的区域
+
+2. 防御xss攻击的规范
+    * 输入、输出校验
+        在每次输入输出的str都做校验，代码在standard中的security.txt中
+    * 标签慎用
+        常见的几种：
+        1. iframe
+            * 可以添加sandbox属性，对iframe的行为进行限制
+            * allow-forms: 允许iframe中提交form表单
+              allow-popups: 允许iframe中弹出新的窗口或者标签页（例如，window.open()，showModalDialog()，target=”_blank”等等）
+              allow-scripts: 允许iframe中执行JavaScript
+              allow-same-origin: 允许iframe中的网页开启同源策略
+        2. svg    
+    * 书写规范
+        1. 正则要考虑全面，比如换行
+        2. 注释中不要出现变量
+    * 敏感属性
+        href，src，onerror等绑定在html中监听事件
+        解决方案：
+        监听事件尽量以js的形式绑定，不出现在html元素中
+        做好异常提醒
+
+### 总结
+
+    规范，校验，转义。
